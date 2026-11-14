@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order | ATELIER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="tracking-header">
+        <a href="index.html">ATELIER</a>
+        <a href="index.html">CONTINUE SHOPPING</a>
+    </header>
+
+    <main class="tracking-container">
+
+        <h1>TRACK YOUR ORDER</h1>
+
+        <p>
+            Enter your order number and phone number
+            to check your delivery status.
+        </p>
+
+        <form id="trackingForm">
+
+            <label>ORDER NUMBER</label>
+            <input
+                type="text"
+                id="trackingOrderNumber"
+                placeholder="Example: AT123456789"
+                required
+            >
+
+            <label>PHONE NUMBER</label>
+            <input
+                type="tel"
+                id="trackingPhone"
+                placeholder="Your checkout phone number"
+                required
+            >
+
+            <button type="submit" id="trackingButton">
+                TRACK ORDER
+            </button>
+
+        </form>
+
+        <div id="trackingResult"></div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="tracking.js"></script>
+
+</body>
+</html>
