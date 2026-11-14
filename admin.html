@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo">ATELIER</a>
+    <a href="index.html">VIEW STORE ↗</a>
+</header>
+
+<!-- ADMIN LOGIN -->
+<main id="adminLogin" style="padding:60px 5%;max-width:550px;margin:auto">
+    <p>ATELIER PRIVATE ACCESS</p>
+    <h1 style="font-weight:400;margin:15px 0 30px">
+        Admin Login
+    </h1>
+
+    <form id="adminLoginForm">
+        <p>Email address</p>
+        <input
+            id="adminEmail"
+            type="email"
+            required
+            placeholder="Your admin email"
+        >
+
+        <p>Password</p>
+        <input
+            id="adminPassword"
+            type="password"
+            required
+            placeholder="Your password"
+        >
+
+        <br><br>
+        <button type="submit" class="checkout" id="loginButton">
+            LOGIN
+        </button>
+
+        <p id="loginError" style="color:#b00020"></p>
+    </form>
+</main>
+
+<!-- PROTECTED ADMIN DASHBOARD -->
+<div id="adminDashboard" hidden>
+
+    <main style="padding:40px 5%">
+        <p>STORE MANAGEMENT</p>
+
+        <h1 style="font-weight:400;margin:15px 0 30px">
+            Admin Dashboard
+        </h1>
+
+        <button type="button" id="adminLogout" class="checkout">
+            LOG OUT
+        </button>
+
+        <hr style="margin:40px 0">
+
+        <h2>ADD NEW PRODUCT</h2>
+
+        <form id="productForm">
+            <p>Product name</p>
+            <input id="name" required placeholder="Product name">
+
+            <p>Price (₹)</p>
+            <input id="price" type="number" required placeholder="4990">
+
+            <p>Image URL</p>
+            <input id="image" type="url" required placeholder="https://...">
+
+            <p>Product description</p>
+            <textarea
+              id="description"
+              placeholder="Describe this product..."
+              rows="4"
+            ></textarea>
+
+            <p>Additional image URLs</p>
+            <textarea
+              id="additionalImages"
+              placeholder="Paste one image URL per line..."
+              rows="4"
+            ></textarea>
+
+            <p>Category</p>
+            <select id="category">
+                <option>Woman</option>
+                <option>Man</option>
+                <option>Accessories</option>
+            </select>
+
+            <p>STOCK QUANTITY BY SIZE</p>
+
+            <div class="stock-fields">
+                <label>Size S</label>
+                <input type="number" id="stockS" min="0" value="0">
+            
+                <label>Size M</label>
+                <input type="number" id="stockM" min="0" value="0">
+            
+                <label>Size L</label>
+                <input type="number" id="stockL" min="0" value="0">
+            
+                <label>Size XL</label>
+                <input type="number" id="stockXL" min="0" value="0">
+            </div>
+
+            <br><br>
+            <button type="submit" class="checkout">
+                ADD PRODUCT
+            </button>
+        </form>
+
+        <hr style="margin:40px 0">
+
+        <h2>YOUR PRODUCTS</h2>
+        <div id="adminProducts"></div>
+
+        <hr style="margin:40px 0">
+
+        <h2>CUSTOMER ORDERS</h2>
+        <p>Manage orders placed through your store.</p>
+
+        <div id="adminOrders"></div>
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="admin.js"></script>
+<script src="admin-orders.js"></script>
+<script src="admin-auth.js"></script>
+
+</body>
+</html>

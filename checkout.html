@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | ATELIER</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="checkout-header">
+        <a href="index.html">← CONTINUE SHOPPING</a>
+        <h2>ATELIER</h2>
+        <span>CHECKOUT</span>
+    </header>
+
+    <main class="checkout-container">
+
+        <section class="checkout-form">
+            <h2>DELIVERY DETAILS</h2>
+
+            <form id="checkoutForm">
+                <input type="text" id="customerName"
+                    placeholder="Full name" required>
+
+                <input type="tel" id="phone"
+                    placeholder="Phone number" pattern="[0-9]{10}"
+                    maxlength="10" required>
+
+                <input type="email" id="email"
+                    placeholder="Email address" required>
+
+                <textarea id="address"
+                    placeholder="Full delivery address" required></textarea>
+
+                <div class="address-row">
+                    <input type="text" id="city"
+                        placeholder="City" required>
+
+                    <input type="text" id="state"
+                        placeholder="State" required>
+                </div>
+
+                <input type="text" id="pincode"
+                    placeholder="6-digit PIN code"
+                    pattern="[0-9]{6}" maxlength="6" required>
+
+                <button type="submit" class="place-order">
+                    PLACE ORDER
+                </button>
+            </form>
+        </section>
+
+        <section class="order-summary">
+            <h2>YOUR ORDER</h2>
+            <div id="checkoutItems"></div>
+
+            <div class="summary-total">
+                <span>TOTAL</span>
+                <strong>₹<span id="checkoutTotal">0</span></strong>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATELIER | Contemporary Fashion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="announcement">
+        COMPLIMENTARY SHIPPING ON ORDERS OVER ₹4,999
+    </div>
+
+    <header>
+        <button class="menu" id="menuBtn">☰</button>
+
+        <a href="#" class="logo">ATELIER</a>
+
+        <nav id="navigation">
+            <a href="#products" data-category="all">NEW IN</a>
+            <a href="#products" data-category="Woman">WOMAN</a>
+            <a href="#products" data-category="Man">MAN</a>
+            <a href="#products" data-category="Accessories">ACCESSORIES</a>
+            <a href="tracking.html">TRACK ORDER</a>
+        </nav>
+
+        <div class="header-right">
+            <button id="searchBtn">SEARCH</button>
+        
+            <button id="wishlistBtn">
+                WISHLIST ♡ (<span id="wishlistCount">0</span>)
+            </button>
+        
+            <button id="cartBtn">
+                BAG (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" alt="Fashion campaign">
+
+        <div class="hero-content">
+            <p>AUTUMN / WINTER 2026</p>
+            <h1>Less, but<br><i>better.</i></h1>
+            <a href="#new" class="hero-link">EXPLORE COLLECTION ↗</a>
+        </div>
+    </section>
+
+    <section class="intro" id="new">
+        <div>
+            <p>THE NEW COLLECTION</p>
+            <h2>Modern essentials.</h2>
+        </div>
+        <p>Timeless silhouettes.<br>Contemporary expressions.</p>
+    </section>
+
+    <section class="categories">
+        <a href="#women" class="category" id="women">
+            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85" alt="Women's fashion">
+            <span>WOMAN ↗</span>
+        </a>
+
+        <a href="#men" class="category" id="men">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85" alt="Men's fashion">
+            <span>MAN ↗</span>
+        </a>
+    </section>
+
+    <section class="products-section" id="accessories">
+        <div class="section-title">
+            <div>
+                <p>ATELIER SELECTION</p>
+                <h2>Selected pieces</h2>
+            </div>
+            <a href="#products">VIEW ALL ↗</a>
+        </div>
+
+        <div class="products" id="products"></div>
+        <section id="wishlistSection" style="display:none; padding:40px 5%;">
+            <h2>YOUR WISHLIST ♡</h2>
+            <div id="wishlistProducts" class="products"></div>
+            <button onclick="closeWishlist()">BACK TO SHOP</button>
+        </section>
+          
+<div id="productDetails" class="product-details" style="display:none;">
+    <button onclick="closeProduct()">← BACK TO PRODUCTS</button>
+
+    <div class="details-layout">
+
+        <div class="product-gallery">
+            <img id="detailImage" src="" alt="">
+    
+            <div id="detailThumbnails" class="detail-thumbnails"></div>
+        </div>
+    
+        <div class="details-info">
+    
+            <p id="detailCategory" class="detail-category"></p>
+    
+            <h2 id="detailName"></h2>
+    
+            <h3 id="detailPrice"></h3>
+    
+            <p id="detailDescription" class="detail-description"></p>
+    
+            <p>SELECT SIZE</p>
+    
+            <div class="sizes">
+                <button onclick="selectSize('S', this)">S</button>
+                <button onclick="selectSize('M', this)">M</button>
+                <button onclick="selectSize('L', this)">L</button>
+                <button onclick="selectSize('XL', this)">XL</button>
+            </div>
+    
+            <button id="detailAddButton" onclick="addSelectedProductToCart()">
+                ADD TO BAG
+            </button>
+    
+        </div>
+    </div>
+</div>
+    </section>
+
+    <section class="newsletter">
+        <p>THE ATELIER LETTER</p>
+        <h2>Stay in the know.</h2>
+        <form id="newsletterForm">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">SUBSCRIBE ↗</button>
+        </form>
+    </section>
+
+    <footer>
+        <h2>ATELIER</h2>
+        <div>
+            <a href="#">CONTACT</a>
+            <a href="#">HELP</a>
+            <a href="#">INSTAGRAM</a>
+            <a href="admin.html">ADMIN</a>
+        </div>
+        <p>© 2026 ATELIER. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <div class="cart-panel" id="cartPanel">
+        <button id="closeCart">✕</button>
+        <h2>YOUR BAG</h2>
+        <div id="cartItems"></div>
+        <h3>SUBTOTAL: ₹<span id="total">0</span></h3>
+        <button class="checkout" id="checkout">CHECKOUT</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
