@@ -949,3 +949,580 @@ footer p {
         font-size: 20px;
     }
 }
+
+
+/* =================================
+   ATELIER — PREMIUM HEADER UPGRADE
+================================= */
+
+header {
+    min-height: 82px;
+    border-bottom: 1px solid #eeeeee;
+    position: relative;
+}
+
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 400;
+    letter-spacing: 7px;
+    transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+    opacity: 0.65;
+}
+
+nav {
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    position: relative;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    width: 0;
+    height: 1px;
+    background: #111;
+    transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+.header-right button {
+    transition: opacity 0.3s ease;
+}
+
+.header-right button:hover {
+    opacity: 0.55;
+}
+
+/* MOBILE HEADER */
+
+@media (max-width: 800px) {
+    header {
+        min-height: 70px;
+        height: 70px;
+    }
+
+    .logo {
+        font-size: 23px;
+        letter-spacing: 5px;
+    }
+
+    nav {
+        top: 100%;
+        gap: 22px;
+        border-top: 1px solid #eee;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    nav a {
+        width: fit-content;
+    }
+
+    .header-right {
+        gap: 12px;
+    }
+}
+
+
+/* =================================
+   ATELIER — EDITORIAL HERO UPGRADE
+================================= */
+
+.hero {
+    height: min(78vh, 780px);
+    min-height: 580px;
+    position: relative;
+    overflow: hidden;
+    background: #222;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: brightness(0.78);
+    transform: scale(1);
+    transition: transform 1.2s ease;
+}
+
+.hero:hover img {
+    transform: scale(1.025);
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.42),
+        rgba(0, 0, 0, 0.08) 70%
+    );
+    pointer-events: none;
+}
+
+.hero-content {
+    top: 50%;
+    left: 9%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.hero-content p {
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 400;
+}
+
+.hero-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(72px, 9vw, 125px);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -4px;
+    margin: 30px 0 40px;
+}
+
+.hero-content h1 i {
+    font-weight: 400;
+}
+
+.hero-link {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    padding-bottom: 12px;
+    transition: letter-spacing 0.3s ease;
+}
+
+.hero-link:hover {
+    letter-spacing: 4px;
+}
+
+/* MOBILE HERO */
+
+@media (max-width: 600px) {
+    .hero {
+        height: 75vh;
+        min-height: 520px;
+        max-height: 680px;
+    }
+
+    .hero img {
+        object-position: 58% center;
+    }
+
+    .hero-content {
+        left: 7%;
+        right: 5%;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(65px, 15vw, 85px);
+        letter-spacing: -3px;
+        margin: 25px 0 35px;
+    }
+
+    .hero-content p {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+}
+
+
+/* =================================
+   ATELIER — EDITORIAL INTRO SECTION
+================================= */
+
+.intro {
+    padding: 110px 8% 95px;
+    align-items: flex-end;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.intro > div > p {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #888;
+}
+
+.intro h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 400;
+    letter-spacing: -1.5px;
+    margin-top: 22px;
+}
+
+.intro > p {
+    font-size: 12px;
+    line-height: 2;
+    letter-spacing: 1.5px;
+    color: #777;
+    padding-bottom: 7px;
+}
+
+/* MOBILE INTRO */
+
+@media (max-width: 600px) {
+    .intro {
+        padding: 75px 6%;
+    }
+
+    .intro h2 {
+        font-size: 40px;
+    }
+
+    .intro > p {
+        font-size: 11px;
+        margin-top: 25px;
+    }
+}
+
+
+/* =================================
+   ATELIER — PREMIUM CATEGORY PANELS
+================================= */
+
+.categories {
+    gap: 18px;
+    padding: 0 4%;
+}
+
+.category {
+    height: 680px;
+    background: #eee;
+    position: relative;
+}
+
+.category img {
+    transition: transform 0.9s ease;
+}
+
+.category::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.35),
+        transparent 45%
+    );
+    pointer-events: none;
+}
+
+.category:hover img {
+    transform: scale(1.045);
+}
+
+.category span {
+    bottom: 35px;
+    left: 35px;
+    z-index: 1;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    transition: letter-spacing 0.3s ease;
+}
+
+.category:hover span {
+    letter-spacing: 4px;
+}
+
+/* MOBILE CATEGORY PANELS */
+
+@media (max-width: 800px) {
+    .categories {
+        gap: 10px;
+        padding: 0 3%;
+    }
+
+    .category {
+        height: 430px;
+    }
+
+    .category span {
+        left: 15px;
+        bottom: 20px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .category {
+        height: 300px;
+    }
+
+    .category span {
+        font-size: 16px;
+        left: 10px;
+    }
+}
+
+
+/* =================================
+   ATELIER — PREMIUM PRODUCT CARDS
+================================= */
+
+.products {
+    gap: 28px 18px;
+}
+
+.product {
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.35s ease;
+}
+
+.product img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.product:hover img {
+    transform: scale(1.035);
+}
+
+.product h3 {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    margin: 15px 0 7px;
+}
+
+.product p {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.5px;
+}
+
+.product button {
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+@media (max-width: 600px) {
+    .products {
+        gap: 22px 10px;
+    }
+
+    .product h3 {
+        font-size: 11px;
+    }
+
+    .product p {
+        font-size: 11px;
+    }
+}
+
+
+/* =================================
+   ATELIER — PRODUCT BUTTON DETAILS
+================================= */
+
+/* Wishlist heart */
+.product .wishlist-heart {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: #111;
+    font-size: 21px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.product .wishlist-heart:hover {
+    background: #111;
+    color: #fff;
+    transform: scale(1.08);
+}
+
+/* View product button */
+.product > button:not(.wishlist-heart) {
+    width: 100%;
+    min-height: 43px;
+    margin-top: 14px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #111;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.product > button:not(.wishlist-heart):hover {
+    background: #fff;
+    color: #111;
+}
+
+@media (max-width: 600px) {
+    .product .wishlist-heart {
+        width: 33px;
+        height: 33px;
+        font-size: 18px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .product > button:not(.wishlist-heart) {
+        min-height: 39px;
+        font-size: 9px;
+    }
+}
+
+
+/* =================================
+   ATELIER — PREMIUM NEWSLETTER
+================================= */
+
+#newsletterForm {
+    max-width: 560px;
+    width: 100%;
+    margin: 35px auto 0;
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid #111;
+    gap: 15px;
+}
+
+#newsletterForm input {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 17px 5px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+#newsletterForm input::placeholder {
+    color: #999;
+}
+
+#newsletterForm button {
+    border: none;
+    background: transparent;
+    color: #111;
+    padding: 0 5px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+#newsletterForm button:hover {
+    opacity: 0.5;
+}
+
+@media (max-width: 500px) {
+    #newsletterForm {
+        gap: 8px;
+    }
+
+    #newsletterForm input {
+        font-size: 11px;
+    }
+
+    #newsletterForm button {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+
+/* =================================
+   ATELIER — LUXURY FOOTER UPGRADE
+================================= */
+
+footer {
+    background: #f7f7f5;
+    color: #111;
+    padding: 75px 8% 30px;
+    text-align: center;
+    border-top: 1px solid #eaeaea;
+}
+
+footer h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 9px;
+    margin-bottom: 38px;
+}
+
+footer div {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 38px;
+    margin-bottom: 65px;
+}
+
+footer div a {
+    color: #333;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+footer div a:hover {
+    opacity: 0.45;
+}
+
+footer > p {
+    border-top: 1px solid #e5e5e5;
+    padding-top: 25px;
+    color: #888;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+@media (max-width: 600px) {
+    footer {
+        padding: 60px 6% 25px;
+    }
+
+    footer h2 {
+        font-size: 30px;
+        letter-spacing: 7px;
+    }
+
+    footer div {
+        gap: 22px;
+        margin-bottom: 50px;
+    }
+
+    footer div a {
+        font-size: 9px;
+    }
+}
