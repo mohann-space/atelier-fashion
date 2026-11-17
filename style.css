@@ -1526,3 +1526,250 @@ footer > p {
         font-size: 9px;
     }
 }
+
+/* =================================
+   ATELIER — PREMIUM PRODUCT DETAILS
+================================= */
+
+.product-details {
+    padding: 65px 6%;
+    background: #fff;
+}
+
+.product-details > button:first-child {
+    background: transparent;
+    border: none;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+    margin-bottom: 35px;
+    transition: opacity 0.3s ease;
+}
+
+.product-details > button:first-child:hover {
+    opacity: 0.5;
+}
+
+.details-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 7%;
+    align-items: start;
+}
+
+.product-gallery {
+    width: 100%;
+    overflow: hidden;
+}
+
+#detailImage {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+}
+
+.detail-thumbnails {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+    overflow-x: auto;
+}
+
+.details-info {
+    padding: 35px 0;
+}
+
+.detail-category {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+#detailName {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 18px;
+}
+
+#detailPrice {
+    font-size: 15px;
+    font-weight: 400;
+    margin-bottom: 28px;
+}
+
+.detail-description {
+    font-size: 12px;
+    line-height: 2;
+    color: #777;
+    margin-bottom: 35px;
+}
+
+.details-info > p:not(.detail-category):not(.detail-description) {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.sizes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.sizes button {
+    width: 48px;
+    height: 48px;
+    background: #fff;
+    border: 1px solid #ddd;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.sizes button:hover {
+    border-color: #111;
+}
+
+/* Add to Bag */
+#detailAddButton {
+    width: 100%;
+    min-height: 52px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #111;
+    font-size: 10px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#detailAddButton:hover {
+    background: #fff;
+    color: #111;
+}
+
+@media (max-width: 750px) {
+    .product-details {
+        padding: 35px 5%;
+    }
+
+    .details-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .details-info {
+        padding: 15px 0 35px;
+    }
+
+    #detailName {
+        font-size: 34px;
+    }
+
+    .sizes button {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+/* =================================
+   ATELIER — PREMIUM SIZE GUIDE
+================================= */
+
+.size-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.size-heading p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.size-heading button {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #999;
+    padding: 5px 0;
+    font-size: 9px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.size-guide-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.size-guide-content {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    max-width: 460px;
+    padding: 55px 40px 40px;
+}
+
+.size-guide-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.size-guide-content > p:first-of-type {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #888;
+}
+
+.size-guide-content h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 35px;
+    margin: 18px 0;
+}
+
+.size-guide-note {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.size-guide-table > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 15px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.size-guide-table > div:first-child {
+    font-size: 10px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #111;
+}
+
+@media (max-width: 500px) {
+    .size-guide-content {
+        padding: 50px 25px 30px;
+    }
+}
+

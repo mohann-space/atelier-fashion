@@ -110,7 +110,10 @@
     
             <p id="detailDescription" class="detail-description"></p>
     
-            <p>SELECT SIZE</p>
+            <div class="size-heading">
+                <p>SELECT SIZE</p>
+                <button type="button" onclick="openSizeGuide()">SIZE GUIDE ↗</button>
+            </div>
     
             <div class="sizes">
                 <button onclick="selectSize('S', this)">S</button>
@@ -125,6 +128,33 @@
     
         </div>
     </div>
+    <!-- SIZE GUIDE POPUP -->
+<div id="sizeGuideModal" class="size-guide-modal" style="display: none;">
+
+    <div class="size-guide-content">
+
+        <button class="size-guide-close" onclick="closeSizeGuide()">
+            ×
+        </button>
+
+        <p>ATELIER FIT GUIDE</p>
+        <h2>Find your size</h2>
+
+        <p class="size-guide-note">
+            Our pieces are designed with a contemporary fit.
+            If you prefer a relaxed fit, consider sizing up.
+        </p>
+
+        <div class="size-guide-table">
+            <div><strong>SIZE</strong><strong>FIT</strong></div>
+            <div><span>S</span><span>Small</span></div>
+            <div><span>M</span><span>Medium</span></div>
+            <div><span>L</span><span>Large</span></div>
+            <div><span>XL</span><span>Extra Large</span></div>
+        </div>
+
+    </div>
+</div>
 </div>
     </section>
 

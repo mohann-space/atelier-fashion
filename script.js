@@ -495,3 +495,11 @@ function closeWishlist() {
 // Initialize wishlist count
 updateWishlistCount();
 
+
+function openSizeGuide() {
+    document.getElementById("sizeGuideModal").style.display = "flex";
+}
+
+function closeSizeGuide() {
+    document.getElementById("sizeGuideModal").style.display = "none";
+}
