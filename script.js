@@ -2,6 +2,7 @@
 let products = [];
 let cart = JSON.parse(localStorage.getItem("atelierCart")) || [];
 let wishlist = JSON.parse(localStorage.getItem("atelierWishlist")) || [];
+let productSectionPosition = 0;
 
 const productContainer = document.getElementById("products");
 
@@ -141,31 +142,42 @@ function updateCart() {
     document.getElementById("cartCount").textContent = count;
 
     document.getElementById("cartItems").innerHTML =
-        cart.map(item => `
-            <div class="cart-item">
-                <img
-                    src="${escapeHTML(item.image)}"
-                    alt="${escapeHTML(item.name)}"
-                    style="width:80px;height:100px;object-fit:cover;"
-                >
+    document.getElementById("cartItems").innerHTML = cart.length === 0
+    ? `
+        <div class="empty-cart">
+            <p class="empty-cart-brand">ATELIER</p>
+            <h3>Your bag is waiting.</h3>
+            <p>Discover pieces that define your style.</p>
+            <button onclick="closeCartPanel(); document.getElementById('products').scrollIntoView({ behavior: 'smooth' });">
+                CONTINUE SHOPPING ↗
+            </button>
+        </div>
+    `
+    : cart.map(item => `
+        <div class="cart-item">
+            <img
+                src="${escapeHTML(item.image)}"
+                alt="${escapeHTML(item.name)}"
+                style="width:80px;height:100px;object-fit:cover;"
+            >
 
-                <p>${escapeHTML(item.name)}</p>
-                <p>Size: ${escapeHTML(item.size || "One Size")}</p>
-                <p>₹${Number(item.price).toLocaleString("en-IN")}</p>
+            <p>${escapeHTML(item.name)}</p>
+            <p>Size: ${escapeHTML(item.size || "One Size")}</p>
+            <p>₹${Number(item.price).toLocaleString("en-IN")}</p>
 
-                <div class="quantity-controls">
-                    <button onclick="changeQuantity(${item.id}, '${escapeHTML(item.size || "One Size")}', -1)">−</button>
+            <div class="quantity-controls">
+                <button onclick="changeQuantity(${item.id}, '${escapeHTML(item.size || "One Size")}', -1)">−</button>
 
-                    <span>${item.quantity}</span>
+                <span>${item.quantity}</span>
 
-                    <button onclick="changeQuantity(${item.id}, '${escapeHTML(item.size || "One Size")}', 1)">+</button>
-                </div>
-
-                <button onclick="removeItem(${item.id}, '${escapeHTML(item.size || "One Size")}')">
-                    REMOVE
-                </button>
+                <button onclick="changeQuantity(${item.id}, '${escapeHTML(item.size || "One Size")}', 1)">+</button>
             </div>
-        `).join("");
+
+            <button onclick="removeItem(${item.id}, '${escapeHTML(item.size || "One Size")}')">
+                REMOVE
+            </button>
+        </div>
+    `).join("");
 
     const total = cart.reduce(
         (sum, item) => sum + Number(item.price) * item.quantity, 0
@@ -176,13 +188,40 @@ function updateCart() {
 }
 
 // Shopping bag open and close
+// CREATE CART BACKDROP
+let cartBackdrop = document.querySelector(".cart-backdrop");
+
+if (!cartBackdrop) {
+    cartBackdrop = document.createElement("div");
+    cartBackdrop.className = "cart-backdrop";
+    document.body.appendChild(cartBackdrop);
+}
+
+// OPEN CART
 document.getElementById("cartBtn").onclick = () => {
     document.getElementById("cartPanel").classList.add("open");
+    cartBackdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
 };
 
-document.getElementById("closeCart").onclick = () => {
+// CLOSE CART
+function closeCartPanel() {
     document.getElementById("cartPanel").classList.remove("open");
-};
+    cartBackdrop.classList.remove("show");
+    document.body.style.overflow = "";
+}
+
+document.getElementById("closeCart").onclick = closeCartPanel;
+
+// CLOSE WHEN BACKDROP IS CLICKED
+cartBackdrop.onclick = closeCartPanel;
+
+// CLOSE WHEN ESCAPE IS PRESSED
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+        closeCartPanel();
+    }
+});
 
 // Mobile navigation
 document.getElementById("menuBtn").onclick = () => {
@@ -254,6 +293,7 @@ function openProduct(id) {
     selectedProduct = products.find(product => product.id === id);
 
     if (!selectedProduct) return;
+    productSectionPosition = document.getElementById("products").getBoundingClientRect().top + window.scrollY;
 
     selectedSize = "";
 
@@ -287,11 +327,13 @@ function openProduct(id) {
     selectedSize = "";
 
     document.querySelectorAll(".sizes button").forEach(button => {
-        const size = button.textContent.trim().split(" ")[0];
+        const size = button.dataset.size || button.textContent.trim().split(" ")[0];
         const stock = Number(selectedProduct.stock?.[size] ?? 0);
-    
+        
+        button.dataset.size = size;
         button.classList.remove("active");
         button.disabled = stock <= 0;
+        
         button.textContent = stock <= 0
             ? size + " - SOLD OUT"
             : size;
@@ -315,7 +357,10 @@ function openProduct(id) {
     document.getElementById("products").style.display = "none";
     document.getElementById("productDetails").style.display = "block";
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: document.getElementById("products").getBoundingClientRect().top + window.scrollY,
+        behavior: "smooth"
+    });
 }
 
 // Switch the main product image
@@ -334,7 +379,10 @@ function closeProduct() {
     document.getElementById("productDetails").style.display = "none";
     document.getElementById("products").style.display = "grid";
 
-    window.scrollTo(0, 0);
+    window.scrollTo({
+        top: productSectionPosition,
+        behavior: "smooth"
+    });
 }
 
 // Select size
@@ -386,7 +434,7 @@ function addSelectedProductToCart() {
 
     addToCart(selectedProduct.id, selectedSize);
 
-    alert("Added to bag! Size: " + selectedSize);
+    showBagNotification("Added to bag · Size " + selectedSize);
 }
 
 // Checkout
@@ -502,4 +550,24 @@ function openSizeGuide() {
 
 function closeSizeGuide() {
     document.getElementById("sizeGuideModal").style.display = "none";
+}
+
+function showBagNotification(message) {
+    let notification = document.getElementById("bagNotification");
+
+    if (!notification) {
+        notification = document.createElement("div");
+        notification.id = "bagNotification";
+        notification.className = "bag-notification";
+        document.body.appendChild(notification);
+    }
+
+    notification.textContent = message;
+    notification.classList.add("show");
+
+    clearTimeout(window.bagNotificationTimer);
+
+    window.bagNotificationTimer = setTimeout(() => {
+        notification.classList.remove("show");
+    }, 2500);
 }
