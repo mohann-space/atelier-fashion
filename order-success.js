@@ -6,7 +6,11 @@ const lastOrder = JSON.parse(
 const orderNumber = document.getElementById("successOrderNumber");
 const orderTotal = document.getElementById("successTotal");
 
-if (lastOrder) {
+if (
+    lastOrder &&
+    lastOrder.orderNumber &&
+    Number.isFinite(Number(lastOrder.total))
+) {
     orderNumber.textContent = lastOrder.orderNumber;
 
     orderTotal.textContent =

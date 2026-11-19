@@ -48,6 +48,7 @@ function escapeHTML(value) {
     })[char]);
 }
 
+let isOrderSubmitting = false;
 document.getElementById("checkoutForm").addEventListener(
     "submit",
     async function(event) {
@@ -57,10 +58,15 @@ document.getElementById("checkoutForm").addEventListener(
             alert("Your shopping bag is empty!");
             return;
         }
+        if (isOrderSubmitting) {
+            return;
+        }
+        
+        isOrderSubmitting = true;
 
         const orderButton = document.querySelector(".place-order");
         orderButton.disabled = true;
-        orderButton.textContent = "PLACING ORDER...";
+        orderButton.textContent = "SECURELY PLACING ORDER...";
 
         const total = checkoutCart.reduce(
             (sum, item) =>
@@ -131,6 +137,7 @@ document.getElementById("checkoutForm").addEventListener(
                 "Your bag is still saved. Please try again."
             );
 
+            isOrderSubmitting = false;
             orderButton.disabled = false;
             orderButton.textContent = "PLACE ORDER";
         }
@@ -138,3 +145,14 @@ document.getElementById("checkoutForm").addEventListener(
 );
 
 displayCheckout();
+
+window.addEventListener("pageshow", function() {
+    isOrderSubmitting = false;
+
+    const orderButton = document.querySelector(".place-order");
+
+    if (checkoutCart.length > 0) {
+        orderButton.disabled = false;
+        orderButton.textContent = "PLACE ORDER";
+    }
+});

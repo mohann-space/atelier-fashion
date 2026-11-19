@@ -1,193 +1,247 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATELIER | Contemporary Fashion</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ATELIER | Contemporary Fashion</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
 
-    <div class="announcement">
-        COMPLIMENTARY SHIPPING ON ORDERS OVER ₹4,999
-    </div>
-
-    <header>
-        <button class="menu" id="menuBtn">☰</button>
-
-        <a href="#" class="logo">ATELIER</a>
-
-        <nav id="navigation">
-            <a href="#products" data-category="all">NEW IN</a>
-            <a href="#products" data-category="Woman">WOMAN</a>
-            <a href="#products" data-category="Man">MAN</a>
-            <a href="#products" data-category="Accessories">ACCESSORIES</a>
-            <a href="tracking.html">TRACK ORDER</a>
-        </nav>
-
-        <div class="header-right">
-            <button id="searchBtn">SEARCH</button>
-        
-            <button id="wishlistBtn">
-                WISHLIST ♡ (<span id="wishlistCount">0</span>)
-            </button>
-        
-            <button id="cartBtn">
-                BAG (<span id="cartCount">0</span>)
-            </button>
+        <div class="announcement">
+            COMPLIMENTARY SHIPPING ON ORDERS OVER ₹4,999
         </div>
-    </header>
 
-    <section class="hero">
-        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" alt="Fashion campaign">
+        <header>
+            <button class="menu" id="menuBtn">☰</button>
 
-        <div class="hero-content">
-            <p>AUTUMN / WINTER 2026</p>
-            <h1>Less, but<br><i>better.</i></h1>
-            <a href="#new" class="hero-link">EXPLORE COLLECTION ↗</a>
-        </div>
-    </section>
+            <a href="#" class="logo">ATELIER</a>
 
-    <section class="intro" id="new">
-        <div>
-            <p>THE NEW COLLECTION</p>
-            <h2>Modern essentials.</h2>
-        </div>
-        <p>Timeless silhouettes.<br>Contemporary expressions.</p>
-    </section>
-     
-    
-    <section class="categories">
-        <a href="#women" class="category" id="women">
-            <img src="https://images.squarespace-cdn.com/content/v1/5bb5517529f2cc362ee28a6f/1774397989786-6HU5ETJSSBH3AT3T1T7D/Elegant%2Bminimalist%2Bstyle%2Bportrait.png"
-                alt="Women's minimalist beige fashion">
-            <span>WOMAN ↗</span>
-     </a>
+            <nav id="navigation">
+                <a href="#products" data-category="all">NEW IN</a>
+                <a href="#products" data-category="Woman">WOMAN</a>
+                <a href="#products" data-category="Man">MAN</a>
+                <a href="#products" data-category="Accessories">ACCESSORIES</a>
+                <a href="tracking.html">TRACK ORDER</a>
+            </nav>
 
-        <a href="#men" class="category" id="men">
-            <img src="https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw0a211094/24E245JA045-1546-150_1.jpg?q=100"
-                alt="Men's minimalist beige fashion">
-            <span>MAN ↗</span>
-        </a>
-    </section>
-
-
-    <section class="products-section" id="accessories">
-        <div class="section-title">
-            <div>
-                <p>ATELIER SELECTION</p>
-                <h2>Selected pieces</h2>
+            <div class="header-right">
+                <button id="searchBtn">SEARCH</button>
+            
+                <button id="wishlistBtn">
+                    WISHLIST ♡ (<span id="wishlistCount">0</span>)
+                </button>
+            
+                <button id="cartBtn">
+                    BAG (<span id="cartCount">0</span>)
+                </button>
             </div>
-            <a href="#products">VIEW ALL ↗</a>
+        </header>
+
+        <!-- SEARCH OVERLAY -->
+        <div id="searchOverlay" class="search-overlay">
+
+            <div class="search-header">
+                <h2>ATELIER</h2>
+                <button id="closeSearch">✕</button>
+            </div>
+
+            <div class="search-content">
+                 <p>WHAT ARE YOU LOOKING FOR?</p>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search products..."
+                        autocomplete="off"
+                    >
+
+                    <p id="searchHint" class="search-hint">
+                        DISCOVER THE ATELIER COLLECTION
+                    </p>
+                    
+                    <div id="searchResults"></div>
         </div>
 
-        <div class="products" id="products"></div>
-        <section id="wishlistSection" style="display:none; padding:40px 5%;">
-            <h2>YOUR WISHLIST ♡</h2>
-            <div id="wishlistProducts" class="products"></div>
-            <button onclick="closeWishlist()">BACK TO SHOP</button>
+        </div>
+
+        <section class="hero">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=2000&q=85" alt="Fashion campaign">
+
+            <div class="hero-content">
+                <p>AUTUMN / WINTER 2026</p>
+                <h1>Less, but<br><i>better.</i></h1>
+                <a href="#new" class="hero-link">EXPLORE COLLECTION ↗</a>
+            </div>
         </section>
-          
-<div id="productDetails" class="product-details" style="display:none;">
-    <button onclick="closeProduct()">← BACK TO PRODUCTS</button>
 
-    <div class="details-layout">
+        <section class="intro" id="new">
+            <div>
+                <p>THE NEW COLLECTION</p>
+                <h2>Modern essentials.</h2>
+            </div>
+            <p>Timeless silhouettes.<br>Contemporary expressions.</p>
+        </section>
+        
+        
+        <section class="categories">
+            <a href="#women" class="category" id="women">
+                <img src="https://images.squarespace-cdn.com/content/v1/5bb5517529f2cc362ee28a6f/1774397989786-6HU5ETJSSBH3AT3T1T7D/Elegant%2Bminimalist%2Bstyle%2Bportrait.png"
+                    alt="Women's minimalist beige fashion">
+                <span>WOMAN ↗</span>
+        </a>
 
-        <div class="product-gallery">
-            <img id="detailImage" src="" alt="">
-    
-            <div id="detailThumbnails" class="detail-thumbnails"></div>
+            <a href="#men" class="category" id="men">
+                <img src="https://www.jacquemus.com/dw/image/v2/BJFJ_PRD/on/demandware.static/-/Sites-master-jacquemus/default/dw0a211094/24E245JA045-1546-150_1.jpg?q=100"
+                    alt="Men's minimalist beige fashion">
+                <span>MAN ↗</span>
+            </a>
+        </section>
+
+
+        <section class="products-section" id="accessories">
+            <div class="section-title">
+                <div>
+                    <p>ATELIER SELECTION</p>
+                    <h2>Selected pieces</h2>
+                </div>
+                <a href="#products">VIEW ALL ↗</a>
+            </div>
+
+            <div class="products" id="products"></div>
+            <section id="wishlistSection" style="display:none; padding:40px 5%;">
+                <h2>YOUR WISHLIST ♡</h2>
+                <div id="wishlistProducts" class="products"></div>
+                <button onclick="closeWishlist()">BACK TO SHOP</button>
+            </section>
+            
+    <div id="productDetails" class="product-details" style="display:none;">
+        <button onclick="closeProduct()">← BACK TO PRODUCTS</button>
+
+        <div class="details-layout">
+
+            <div class="product-gallery">
+                <img id="detailImage" src="" alt="">
+        
+                <div id="detailThumbnails" class="detail-thumbnails"></div>
+            </div>
+        
+            <div class="details-info">
+        
+                <p id="detailCategory" class="detail-category"></p>
+        
+                <h2 id="detailName"></h2>
+        
+                <h3 id="detailPrice"></h3>
+        
+                <p id="detailDescription" class="detail-description"></p>
+        
+                <div class="size-heading">
+                    <p>SELECT SIZE</p>
+                    <button type="button" onclick="openSizeGuide()">SIZE GUIDE ↗</button>
+                </div>
+        
+                <div class="sizes">
+                    <button onclick="selectSize('S', this)">S</button>
+                    <button onclick="selectSize('M', this)">M</button>
+                    <button onclick="selectSize('L', this)">L</button>
+                    <button onclick="selectSize('XL', this)">XL</button>
+                </div>
+        
+                <button id="detailAddButton" onclick="addSelectedProductToCart()">
+                    ADD TO BAG
+                </button>
+                <div class="product-benefits">
+
+                    <div class="benefit-item">
+                        <span>↗</span>
+                        <div>
+                            <strong>COMPLIMENTARY SHIPPING</strong>
+                            <p>On orders over ₹4,999</p>
+                        </div>
+                    </div>
+                
+                    <div class="benefit-item">
+                        <span>↻</span>
+                        <div>
+                            <strong>EASY RETURNS</strong>
+                            <p>Contact our support team for assistance</p>
+                        </div>
+                    </div>
+                
+                    <div class="benefit-item">
+                        <span>♧</span>
+                        <div>
+                            <strong>SECURE CHECKOUT</strong>
+                            <p>Your order is processed securely</p>
+                        </div>
+                    </div>
+                
+                </div>  
+        
+            </div>
         </div>
-    
-        <div class="details-info">
-    
-            <p id="detailCategory" class="detail-category"></p>
-    
-            <h2 id="detailName"></h2>
-    
-            <h3 id="detailPrice"></h3>
-    
-            <p id="detailDescription" class="detail-description"></p>
-    
-            <div class="size-heading">
-                <p>SELECT SIZE</p>
-                <button type="button" onclick="openSizeGuide()">SIZE GUIDE ↗</button>
-            </div>
-    
-            <div class="sizes">
-                <button onclick="selectSize('S', this)">S</button>
-                <button onclick="selectSize('M', this)">M</button>
-                <button onclick="selectSize('L', this)">L</button>
-                <button onclick="selectSize('XL', this)">XL</button>
-            </div>
-    
-            <button id="detailAddButton" onclick="addSelectedProductToCart()">
-                ADD TO BAG
+        <!-- SIZE GUIDE POPUP -->
+    <div id="sizeGuideModal" class="size-guide-modal" style="display: none;">
+
+        <div class="size-guide-content">
+
+            <button class="size-guide-close" onclick="closeSizeGuide()">
+                ×
             </button>
-    
+
+            <p>ATELIER FIT GUIDE</p>
+            <h2>Find your size</h2>
+
+            <p class="size-guide-note">
+                Our pieces are designed with a contemporary fit.
+                If you prefer a relaxed fit, consider sizing up.
+            </p>
+
+            <div class="size-guide-table">
+                <div><strong>SIZE</strong><strong>FIT</strong></div>
+                <div><span>S</span><span>Small</span></div>
+                <div><span>M</span><span>Medium</span></div>
+                <div><span>L</span><span>Large</span></div>
+                <div><span>XL</span><span>Extra Large</span></div>
+            </div>
+
         </div>
     </div>
-    <!-- SIZE GUIDE POPUP -->
-<div id="sizeGuideModal" class="size-guide-modal" style="display: none;">
+    </div>
+        </section>
 
-    <div class="size-guide-content">
+        <section class="newsletter">
+            <p>THE ATELIER LETTER</p>
+            <h2>Stay in the know.</h2>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit">SUBSCRIBE ↗</button>
+            </form>
+        </section>
 
-        <button class="size-guide-close" onclick="closeSizeGuide()">
-            ×
-        </button>
+        <footer>
+            <h2>ATELIER</h2>
+            <div>
+                <a href="#">CONTACT</a>
+                <a href="#">HELP</a>
+                <a href="#">INSTAGRAM</a>
+                <a href="admin.html">ADMIN</a>
+            </div>
+            <p>© 2026 ATELIER. ALL RIGHTS RESERVED.</p>
+        </footer>
 
-        <p>ATELIER FIT GUIDE</p>
-        <h2>Find your size</h2>
-
-        <p class="size-guide-note">
-            Our pieces are designed with a contemporary fit.
-            If you prefer a relaxed fit, consider sizing up.
-        </p>
-
-        <div class="size-guide-table">
-            <div><strong>SIZE</strong><strong>FIT</strong></div>
-            <div><span>S</span><span>Small</span></div>
-            <div><span>M</span><span>Medium</span></div>
-            <div><span>L</span><span>Large</span></div>
-            <div><span>XL</span><span>Extra Large</span></div>
+        <div class="cart-panel" id="cartPanel">
+            <button id="closeCart">✕</button>
+            <h2>YOUR BAG</h2>
+            <div id="cartItems"></div>
+            <h3>SUBTOTAL: ₹<span id="total">0</span></h3>
+            <button class="checkout" id="checkout">CHECKOUT</button>
         </div>
 
-    </div>
-</div>
-</div>
-    </section>
-
-    <section class="newsletter">
-        <p>THE ATELIER LETTER</p>
-        <h2>Stay in the know.</h2>
-        <form id="newsletterForm">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">SUBSCRIBE ↗</button>
-        </form>
-    </section>
-
-    <footer>
-        <h2>ATELIER</h2>
-        <div>
-            <a href="#">CONTACT</a>
-            <a href="#">HELP</a>
-            <a href="#">INSTAGRAM</a>
-            <a href="admin.html">ADMIN</a>
-        </div>
-        <p>© 2026 ATELIER. ALL RIGHTS RESERVED.</p>
-    </footer>
-
-    <div class="cart-panel" id="cartPanel">
-        <button id="closeCart">✕</button>
-        <h2>YOUR BAG</h2>
-        <div id="cartItems"></div>
-        <h3>SUBTOTAL: ₹<span id="total">0</span></h3>
-        <button class="checkout" id="checkout">CHECKOUT</button>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="supabase.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+        <script src="supabase.js"></script>
+        <script src="script.js"></script>
+    </body>
+    </html>

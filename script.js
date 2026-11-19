@@ -244,38 +244,126 @@ document.querySelectorAll("#navigation a[data-category]").forEach(link => {
 });
 
 // Search products
-document.getElementById("searchBtn").onclick = () => {
-    const term = prompt("What are you looking for?");
+// ATELIER SEARCH
 
-    if (!term) return;
+const searchBtn = document.getElementById("searchBtn");
+const searchOverlay = document.getElementById("searchOverlay");
+const closeSearch = document.getElementById("closeSearch");
+const searchInput = document.getElementById("searchInput");
+const searchResults = document.getElementById("searchResults");
+const searchHint = document.getElementById("searchHint");
 
-    const matching = products.filter(product =>
-        product.name.toLowerCase().includes(term.toLowerCase())
-    );
+// Open search
+searchBtn.addEventListener("click", () => {
+    searchOverlay.style.display = "block";
 
-    if (matching.length === 0) {
-        productContainer.innerHTML = "<p>No products found.</p>";
+    requestAnimationFrame(() => {
+        searchOverlay.classList.add("search-visible");
+    });
+
+    document.body.style.overflow = "hidden";
+    searchInput.focus();
+});
+
+// Close search
+function closeSearchOverlay() {
+    searchOverlay.classList.remove("search-visible");
+
+    setTimeout(() => {
+        searchOverlay.style.display = "none";
+    }, 300);
+
+    document.body.style.overflow = "";
+}
+
+closeSearch.addEventListener("click", closeSearchOverlay);
+
+// Search products as customer types
+searchInput.addEventListener("input", () => {
+
+    const term = searchInput.value.trim().toLowerCase();
+
+    if (!term) {
+        searchResults.innerHTML = "";
+        searchHint.textContent = "DISCOVER THE ATELIER COLLECTION";
         return;
     }
 
-    productContainer.innerHTML = matching.map(product => `
+    const matching = products.filter(product =>
+        String(product.name || "").toLowerCase().includes(term) ||
+        String(product.category || "").toLowerCase().includes(term)
+    );
+
+    if (matching.length === 0) {
+        searchHint.textContent = "NO RESULTS FOUND";
+        searchResults.innerHTML = "<p>No products found.</p>";
+        return;
+    }
+    
+    searchHint.textContent =
+        matching.length + (matching.length === 1
+            ? " PRODUCT FOUND"
+            : " PRODUCTS FOUND");
+
+    searchResults.innerHTML = matching.map(product => `
         <div class="product">
+
             <img
                 src="${escapeHTML(product.image)}"
                 alt="${escapeHTML(product.name)}"
-                onclick="openProduct(${product.id})"
+                data-product-id="${escapeHTML(product.id)}"
             >
 
             <h3>${escapeHTML(product.name)}</h3>
 
             <p>₹${Number(product.price).toLocaleString("en-IN")}</p>
 
-            <button onclick="openProduct(${product.id})">
+            <button data-product-id="${escapeHTML(product.id)}">
                 VIEW PRODUCT
             </button>
+
         </div>
     `).join("");
-};
+});
+
+// Open selected product
+searchResults.addEventListener("click", event => {
+
+    const target = event.target.closest("[data-product-id]");
+
+    if (!target) return;
+
+    const productId = target.dataset.productId;
+
+    const product = products.find(item =>
+        String(item.id) === productId
+    );
+
+    if (!product) return;
+
+    closeSearchOverlay();
+    openProduct(product.id);
+});
+
+// Close search with Escape key
+document.addEventListener("keydown", event => {
+
+    if (
+        event.key === "/" &&
+        searchOverlay.style.display !== "block" &&
+        !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)
+    ) {
+        event.preventDefault();
+        searchBtn.click();
+    }
+
+    if (
+        event.key === "Escape" &&
+        searchOverlay.style.display === "block"
+    ) {
+        closeSearchOverlay();
+    }
+});
 
 // Newsletter
 document.getElementById("newsletterForm").onsubmit = (event) => {
@@ -298,6 +386,7 @@ function openProduct(id) {
     selectedSize = "";
 
     const mainImage = document.getElementById("detailImage");
+    mainImage.classList.remove("image-loaded");
 
     const additionalImages = Array.isArray(selectedProduct.additional_images)
         ? selectedProduct.additional_images
@@ -308,8 +397,13 @@ function openProduct(id) {
         ...additionalImages
     ].filter(Boolean);
 
-    mainImage.src = selectedProduct.image;
     mainImage.alt = selectedProduct.name;
+
+    mainImage.onload = function() {
+        mainImage.classList.add("image-loaded");
+    };
+
+    mainImage.src = selectedProduct.image;
 
     document.getElementById("detailName").textContent =
         selectedProduct.name;
